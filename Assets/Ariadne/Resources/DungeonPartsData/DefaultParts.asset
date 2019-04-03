@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e5989f51895476e92bcdc182d9de29, type: 3}
+  m_Name: DefaultParts
+  m_EditorClassIdentifier: 
+  wallObj: {fileID: 1351699498788318, guid: b2146a4db47c0449b9e05e5104627015, type: 3}
+  groundObj: {fileID: 1454614598009142, guid: 8e63a7e35acb24312becc51c6bd07b1d, type: 3}
+  ceilingObj: {fileID: 1454614598009142, guid: 9f2aae67b46884e49b3a1027787d71e1, type: 3}
+  doorObj: {fileID: 1950984739838420, guid: 50508b83755ff4daf86874e9f5de23ef, type: 3}
+  lockedDoorObj: {fileID: 1259553890706650, guid: cc6c625f464664cbeb8d44c1ecd53144,
+    type: 3}
+  upstairsObj: {fileID: 1672776316739522, guid: 9f622f996b3244b2697312061ff5b3ac,
+    type: 3}
+  downstairsObj: {fileID: 1530763368840756, guid: c36ebf89a1c874f1a98e6656ed1f3918,
+    type: 3}
+  treasureObj: {fileID: 1281466793782170, guid: 34baf871c0b684ac7a69721b5086117f,
+    type: 3}
+  messengerObjects:
+  - {fileID: 1558621074967694, guid: a458f11855f454cab8c9faa9968c4476, type: 3}
+  - {fileID: 1558621074967694, guid: 706f4b4b8fe3846ea86d04349482cc7c, type: 3}
+  pillarObj: {fileID: 1369638262018670, guid: 6a33d480dc8b44e14bb5e999e0bf24f9, type: 3}
+  wallWithTorchObj: {fileID: 1815636223616020, guid: 43f426ac63d46429cadfaa5ae10b4096,
+    type: 3}

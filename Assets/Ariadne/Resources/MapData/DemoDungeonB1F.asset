@@ -1,0 +1,1046 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a4c73da8fb294191a2733552ed30637, type: 3}
+  m_Name: DemoDungeonB1F
+  m_EditorClassIdentifier: 
+  floorId: 1
+  floorName: B1F
+  dungeonParts: {fileID: 11400000, guid: 80e8c3ad7734f4100a8e1c5a03407bbd, type: 2}
+  floorSizeHorizontal: 16
+  floorSizeVertical: 16
+  entrancePos: {x: 0, y: 1}
+  enteringDir: 0
+  mapInfo:
+  - eventId: 90008
+    mapAttr: 5
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 8
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 8
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 9
+    objectFront: 3
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 90009
+    mapAttr: 7
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 9
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 90001
+    mapAttr: 2
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 9
+    objectFront: 2
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 90001
+    mapAttr: 2
+    objectFront: 2
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 8
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 8
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 90003
+    mapAttr: 6
+    objectFront: 2
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 9
+    objectFront: 1
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 90001
+    mapAttr: 2
+    objectFront: 2
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 9
+    objectFront: 3
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 90007
+    mapAttr: 7
+    objectFront: 2
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 8
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 90013
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 90012
+    mapAttr: 7
+    objectFront: 2
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 90004
+    mapAttr: 6
+    objectFront: 3
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 9
+    objectFront: 1
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 9
+    objectFront: 3
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 90002
+    mapAttr: 3
+    objectFront: 2
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 90005
+    mapAttr: 4
+    objectFront: 3
+    messengerType: 0

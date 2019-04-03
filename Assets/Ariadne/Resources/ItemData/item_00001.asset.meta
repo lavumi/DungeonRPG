@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 17414d161771f4cf2ad7c33c69469dc3
+labels:
+- Data
+- ItemMasterData
+- ScriptableObject
+timeCreated: 1513067400
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
