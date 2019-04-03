@@ -94,10 +94,7 @@ namespace Ariadne {
 			StartCoroutine(DelayFadeIn());
 		}
 
-		/// <Summary>
-		/// Get settings from DungeonSettings component.
-		/// </Summary>
-		void GetSettings(){
+        void GetSettings(){
 			gameController = GameObject.FindGameObjectWithTag("GameController");
 			DungeonSettings ds = gameController.GetComponent<DungeonSettings>();
 			dungeonData = ds.dungeonData;
@@ -110,17 +107,11 @@ namespace Ariadne {
 			player = GameObject.FindGameObjectWithTag("Player");
 		}
 
-		/// <Summary>
-		/// Get object references.
-		/// </Summary>
 		void GetRef(){
 			fadeManager = gameController.GetComponent<FadeManager>();
 			eventProcessor = gameController.GetComponent<EventProcessor>();
 		}
 
-		/// <Summary>
-		/// Get unit size of each grid in the dungeon.
-		/// </Summary>
 		void SetUnitSize(){
 			GameObject groundPrefab = dungeonParts.groundObj;
 			unitSize = new Vector3(groundPrefab.transform.localScale.x, groundPrefab.transform.localScale.y, groundPrefab.transform.localScale.z);
@@ -221,7 +212,7 @@ namespace Ariadne {
 		void PlayerMove(){
 			if (Input.GetKey(KeyCode.UpArrow) || isPressedMoveFront){
 				MoveFrontProcess();
-			}
+            }
 
 			if (Input.GetKey(KeyCode.LeftArrow) || isPressedTurnLeft){
 				TurnProcess(TURN_LEFT);
@@ -248,9 +239,6 @@ namespace Ariadne {
 		/// This method is used in mobile devices.
 		/// </Summary>
 		public void OnPressedOkButton(){
-
-
-
 			if (!isInDungeon){
 				return;
 			}
@@ -336,7 +324,8 @@ namespace Ariadne {
 				PlayerPosition.SetTraverseData();
 				SendSetDirtyMsg();
 			}
-		}
+
+        }
 
 		/// <Summary>
 		/// Turn process of the player.
@@ -707,7 +696,8 @@ namespace Ariadne {
 					yield return null;
 				}
 				player.transform.position = targetPos;
-			}
+                GetComponent<EncounterManager>().IncEncounterChance();
+            }
 			
 			if (!isExecutingEvent){
 				PostMove();
@@ -988,5 +978,11 @@ namespace Ariadne {
 		void SendFinishedMsg(IDoorOpen doorOpen, BaseEventData eventData){
 			doorOpen.OnMoveFinished();
 		}
+
+
+       public void setMovable(bool movable)
+        {
+            isInDungeon = movable;
+        }
 	}
 }

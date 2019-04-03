@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Ariadne;
+
 
 public class BattleManager : MonoBehaviour
 {
-    public GameObject gameController;
-    public Canvas battleCanvas;
-
-
-    [SerializeField]
-    GameObject fadeMaskPanel;
-    Image panel;
+    public GameObject battleUI;
+    public GameObject dungeonUI;
 
     [SerializeField]
     GameObject characterPanel;
     Image[] characters;
+
+
+    [SerializeField]
+    GameObject enemyPanel;
+    Image[] enemies;
+
 
     [SerializeField]
     GameObject commandPanel;
@@ -23,6 +26,8 @@ public class BattleManager : MonoBehaviour
 
 
 
+
+    FadeManager fadeManager;
 
 
     float _uiOffset = 0.02f;
@@ -43,42 +48,47 @@ public class BattleManager : MonoBehaviour
         "Run"
     };
 
+    int[] monsterPosArr1 = { 2, 3, 1, 0, 4 };
+    int[] monsterPosArr2 = { 2, 0, 1, 3 };
+
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("start");
+        characters = new Image[5];
+        enemies = new Image[5];
 
+        fadeManager = GetComponent<FadeManager>();
         InitUI();
 
     }
 
-
-
-
-    public void EnteringBattle()
-    {
-        battleCanvas.gameObject.SetActive(true);
-    }
-
-
     void InitUI()
     {
-        string targetName;
-
-
-        GameObject targetObject;
         RectTransform targetTransform;
 
         float anchorPosition = 0;
 
+        initCommandUI();
+        initCharacterUI();
+        initEnemyUI();
 
-        if( commandPanel != null)
+        battleUI.SetActive(false);
+    }
+
+    void initCommandUI()
+    {
+        RectTransform targetTransform;
+
+        float anchorPosition = 0;
+        //Command Panel
+        if (commandPanel != null)
         {
             ((RectTransform)commandPanel.transform).anchorMin = new Vector2(_uiOffset, _characterImgRatio + _uiOffset);
             ((RectTransform)commandPanel.transform).anchorMax = new Vector2(_uiOffset + _commandBtnWidth, 1 - _uiOffset);
 
             anchorPosition += _uiOffset;
-            for( int i = 0;i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 targetTransform = (RectTransform)commandPanel.transform.GetChild(i).transform;
                 targetTransform.anchorMin = new Vector2(0.02f, anchorPosition);
@@ -86,13 +96,20 @@ public class BattleManager : MonoBehaviour
                 targetTransform.anchorMax = new Vector2(0.98f, anchorPosition);
                 anchorPosition += _uiInterOffset;
 
-                targetTransform.GetChild(0).GetComponent<Text>().text = commandScript[4-i];
+                targetTransform.GetChild(0).GetComponent<Text>().text = commandScript[4 - i];
 
                 targetTransform.GetComponent<Button>().onClick.AddListener(ExitBattle);
             }
         }
+    }
 
+    void initCharacterUI()
+    {
+        RectTransform targetTransform;
 
+        float anchorPosition = 0;
+
+        //UserCharacterPanel
         var characterImageSize = Screen.height * _characterImgRatio;
         var characterInterval = Screen.height * _uiInterOffset;
         if (characterPanel != null)
@@ -106,19 +123,52 @@ public class BattleManager : MonoBehaviour
                 targetTransform.sizeDelta = new Vector2(characterImageSize, characterImageSize);
 
                 targetTransform.anchoredPosition = new Vector2(
-                    (characterImageSize + characterInterval) * (2 - i ),
+                    (characterImageSize + characterInterval) * (2 - i),
                     0);
 
+                characters[i] = targetTransform.GetComponent<Image>();
                 targetTransform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/testChar0" + i);
 
             }
 
 
         }
-
-        battleCanvas.gameObject.SetActive(false);
     }
 
+    void initEnemyUI()
+    {
+        RectTransform targetTransform;
+
+        float anchorPosition = 0;
+        var characterImageSize = Screen.height * _characterImgRatio;
+        var characterInterval = Screen.height * _uiInterOffset;
+        //MonsterCharacterPanel
+        if (enemyPanel != null)
+        {
+            ((RectTransform)enemyPanel.transform).anchorMin = new Vector2(_uiOffset, _uiOffset + _characterImgRatio + _uiOffset);
+            ((RectTransform)enemyPanel.transform).anchorMax = new Vector2(1 - _uiOffset, 1 - _uiOffset);
+
+            for (int i = 0; i < 5; i++)
+            {
+                targetTransform = (RectTransform)enemyPanel.transform.GetChild(i).transform;
+                targetTransform.sizeDelta = new Vector2(characterImageSize, characterImageSize);
+
+                targetTransform.anchoredPosition = new Vector2(
+                    (characterImageSize + characterInterval) * (2 - i),
+                    0);
+
+                enemies[i] = targetTransform.GetComponent<Image>();
+            }
+
+
+        }
+    }
+
+    void setEnemyData(int index, CharacterBase data)
+    {
+        enemies[index].gameObject.SetActive(true);
+        enemies[index].sprite = Resources.Load<Sprite>(data.imgFile);
+    }
 
     // Update is called once per frame
     void Update()
@@ -126,10 +176,55 @@ public class BattleManager : MonoBehaviour
         
     }
 
+    public void EnterBattle(CharacterBase[] enemyGroupData)
+    {
+        StartCoroutine(StartBattle(enemyGroupData));
+    }
+
+    private IEnumerator StartBattle(CharacterBase[] enemyGroupData)
+    {
+        fadeManager.FadeOut();
+        var waitTime = new WaitForSeconds(fadeManager.fadeTime);
+        yield return waitTime;
+
+
+        for (int i = 0; i < enemyGroupData.Length; i++)
+        {
+            setEnemyData(monsterPosArr1[i], enemyGroupData[i]);
+        }
+
+
+        battleUI.SetActive(true);
+        dungeonUI.gameObject.SetActive(false);
+
+        fadeManager.FadeIn();
+        yield return null;
+    }
+
     void ExitBattle()
     {
-        battleCanvas.gameObject.SetActive(false);
-        gameController.GetComponent<EncounterManager>().BattleFinished();
+        StartCoroutine(FinishBattle());
+    }
+
+    IEnumerator FinishBattle()
+    {
+        fadeManager.FadeOut();
+        var waitTime = new WaitForSeconds(fadeManager.fadeTime);
+        yield return waitTime;
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            enemies[i].gameObject.SetActive(false);
+        }
+
+        battleUI.SetActive(false);
+        dungeonUI.SetActive(true);
+        GetComponent<EncounterManager>().RefreshEncounter();
+
+        fadeManager.FadeIn();
+        yield return waitTime;
+        GetComponent<Ariadne.MoveController>().setMovable(true);
+        yield return null;
     }
 }
 
