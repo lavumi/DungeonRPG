@@ -1,0 +1,6 @@
+imgFile,CharName,str,def,HP,speed
+Image/testChar00,BlackCow,2,2,5,1
+Image/testChar01,RainbowPewk,3,3,6,2
+Image/testChar02,Gotit,4,4,7,3
+Image/testChar03,EUUU,2,4,8,4
+Image/testChar04,Ari,2,2,9,5

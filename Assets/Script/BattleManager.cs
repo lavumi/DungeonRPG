@@ -7,6 +7,19 @@ using Ariadne;
 
 public class BattleManager : MonoBehaviour
 {
+
+    //**********************UI Position Data************************************//
+    float _uiOffset = 0.02f;
+    float _commandBtnHeight = 0.18f;
+    float _commandBtnWidth = 0.2f;
+    float _uiInterOffset = 0.015f;
+
+    float _characterImgRatio = 0.3f;
+
+    //**************************************************************************//
+
+
+
     public GameObject battleUI;
     public GameObject dungeonUI;
 
@@ -26,17 +39,13 @@ public class BattleManager : MonoBehaviour
 
 
 
-
     FadeManager fadeManager;
 
 
-    float _uiOffset = 0.02f;
-    float _commandBtnHeight = 0.18f;
-    float _commandBtnWidth = 0.2f;
-    float _uiInterOffset = 0.015f;
+
+    CharacterBase[] userPartyData;
 
 
-    float _characterImgRatio = 0.3f;
 
 
     string[] commandScript =
@@ -57,12 +66,19 @@ public class BattleManager : MonoBehaviour
     {
         characters = new Image[5];
         enemies = new Image[5];
+        
+        userPartyData = new CharacterBase[5];
 
         fadeManager = GetComponent<FadeManager>();
         InitUI();
 
+
+        SetPlayerData();
+
     }
 
+
+    //UI Control
     void InitUI()
     {
         RectTransform targetTransform;
@@ -98,7 +114,26 @@ public class BattleManager : MonoBehaviour
 
                 targetTransform.GetChild(0).GetComponent<Text>().text = commandScript[4 - i];
 
-                targetTransform.GetComponent<Button>().onClick.AddListener(ExitBattle);
+
+                switch (i)
+                {
+                    case 0:
+                        targetTransform.GetComponent<Button>().onClick.AddListener(Attack);
+                        break;
+                    case 1:
+                        targetTransform.GetComponent<Button>().onClick.AddListener(Skill);
+                        break;
+                    case 2:
+                        targetTransform.GetComponent<Button>().onClick.AddListener(Item);
+                        break;
+                    case 3:
+                        targetTransform.GetComponent<Button>().onClick.AddListener(Formation);
+                        break;
+                    case 4:
+                        targetTransform.GetComponent<Button>().onClick.AddListener(ExitBattle);
+                        break;
+                }
+               
             }
         }
     }
@@ -127,8 +162,6 @@ public class BattleManager : MonoBehaviour
                     0);
 
                 characters[i] = targetTransform.GetComponent<Image>();
-                targetTransform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Image/testChar0" + i);
-
             }
 
 
@@ -170,10 +203,15 @@ public class BattleManager : MonoBehaviour
         enemies[index].sprite = Resources.Load<Sprite>(data.imgFile);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetPlayerData()
     {
-        
+        userPartyData = CharacterDataManager.GetInstance().GetTestPlayerParty();
+
+
+        for (int i = 0; i < userPartyData.Length; i++)
+        {
+            characters[i].sprite = Resources.Load<Sprite>((string)userPartyData[i].imgFile); ;
+        }
     }
 
     public void EnterBattle(CharacterBase[] enemyGroupData)
@@ -199,6 +237,28 @@ public class BattleManager : MonoBehaviour
 
         fadeManager.FadeIn();
         yield return null;
+    }
+    
+
+
+    void Attack()
+    {
+
+    }
+    
+    void Skill()
+    {
+
+    }
+
+    void Item()
+    {
+
+    }
+
+    void Formation()
+    {
+
     }
 
     void ExitBattle()
@@ -226,5 +286,8 @@ public class BattleManager : MonoBehaviour
         GetComponent<Ariadne.MoveController>().setMovable(true);
         yield return null;
     }
+
+    
+    //BattleProcessing
 }
 

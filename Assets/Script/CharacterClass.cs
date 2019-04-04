@@ -3,6 +3,14 @@ using System.Collections.Generic;
 
 public struct StatusData
 {
+    public static string[] memberList = {
+        "str",
+        "def",
+        "HP",
+        "speed"
+        };
+
+
     public int str;
     public int def;
     public int HP;
@@ -31,25 +39,25 @@ public class CharacterBase
 
     public string Name
     {
-        set { name = value; }
+        protected set { name = value; }
         get{ return name; }
     }
 
     public int Level
     {
-         set { level = value; }
+        protected set { level = value; }
         get { return level; }
     }
 
     public StatusData State
     {
-         set { state = value; }
+        protected set { state = value; }
         get { return state; }
     }
 
     public string imgFile
     {
-        set { imageFile = value; }
+        protected set { imageFile = value; }
         get { return imageFile; }
     }
 

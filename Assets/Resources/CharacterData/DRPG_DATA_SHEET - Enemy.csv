@@ -1,0 +1,4 @@
+imgFile,CharName,str,def,HP,speed
+Image/enemyChar00,Baby D.va,1,1,10,2
+Image/enemyChar01,PioraSense,2,1,5,4
+Image/enemyChar02,MDuin,2,5,5,10

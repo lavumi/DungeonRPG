@@ -256,7 +256,6 @@ namespace Ariadne {
 		/// This method is used for UGUI button.
 		/// </Summary>
 		public void OnPressedButton(int buttonId){
-            Debug.Log(buttonId);
 			switch (buttonId){
 				case TURN_LEFT:
 					isPressedTurnLeft = true;
