@@ -695,7 +695,7 @@ namespace Ariadne {
 					yield return null;
 				}
 				player.transform.position = targetPos;
-                GetComponent<EncounterManager>().IncEncounterChance();
+                GameObject.Find("BattleController").GetComponent<EncounterManager>().IncEncounterChance();
             }
 			
 			if (!isExecutingEvent){

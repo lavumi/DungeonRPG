@@ -7,19 +7,22 @@ using UnityEngine;
 public class CharacterDataManager : MonoBehaviour
 {
 
-    private static CharacterDataManager instance;
-    private static GameObject container;
+    private static CharacterDataManager instance = null;        
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+
+        else if (instance != this)
+            Destroy(gameObject);
+
+        DontDestroyOnLoad(gameObject);
+    }
+
     public static CharacterDataManager GetInstance()
     {
-        if (!instance)
-        {
-            container = new GameObject();
-            container.name = "CharacterDataManager";
-            instance = container.AddComponent(typeof(CharacterDataManager)) as CharacterDataManager;
-        }
         return instance;
     }
-    
 
 
     CharacterBase[] enemyData;
@@ -72,7 +75,6 @@ public class CharacterDataManager : MonoBehaviour
 
             playerData[i] = new CharacterBase((string)data[i]["imgFile"], (string)data[i]["CharName"], 1, stat);
         }
-        Debug.Log("LoadPlayerData");
     }
 
 
@@ -85,12 +87,11 @@ public class CharacterDataManager : MonoBehaviour
         for (int i = 0; i < monsterCount; i++)
         {
             int rndMon = Random.Range(0, enemyData.Length);
-            enemyGroupData[i] = enemyData[rndMon];
+            enemyGroupData[i] = new CharacterBase(enemyData[rndMon].imgFile, enemyData[rndMon].Name, enemyData[rndMon].Level, enemyData[rndMon].State);
+            ;
         }
         return enemyGroupData;
     }
-
-
 
     public CharacterBase[] GetTestPlayerParty()
     {
@@ -98,7 +99,7 @@ public class CharacterDataManager : MonoBehaviour
 
         for (int i = 0; i < 5; i++)
         {
-            party[i] = playerData[i];
+            party[i] = new CharacterBase(playerData[i].imgFile, playerData[i].Name, playerData[i].Level, playerData[i].State);
         }
         return party;
     }

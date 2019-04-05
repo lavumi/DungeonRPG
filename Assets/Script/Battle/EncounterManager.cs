@@ -6,11 +6,10 @@ using UnityEngine;
 public class EncounterManager : MonoBehaviour
 {
 
+
     BattleManager battleManager;
-    public GameObject dungeonUI;
+    public GameObject minimapBG;
 
-
-    GameObject minimapBG;
 
 
 
@@ -23,13 +22,10 @@ public class EncounterManager : MonoBehaviour
     void Start()
     {
         battleManager = GetComponent<BattleManager>();
-        minimapBG = dungeonUI.transform.Find("MapParent").Find("MapBackground").gameObject;
     }
 
     public void Encounter()
     {
-        GetComponent<Ariadne.MoveController>().setMovable(false);
-
         battleManager.EnterBattle(CharacterDataManager.GetInstance().GetMonsterGroup());
     }
 
@@ -60,5 +56,6 @@ public class EncounterManager : MonoBehaviour
     public void RefreshEncounter()
     {
         minimapBG.GetComponent<UnityEngine.UI.Image>().color = new Color(0,1,0);
+       
     }
 }

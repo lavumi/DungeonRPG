@@ -34,6 +34,7 @@ public class CharacterBase
         this.imgFile = img;
         this.level = level;
         this.state = stat;
+        this.curStat = stat;
     }
 
 
@@ -61,10 +62,16 @@ public class CharacterBase
         get { return imageFile; }
     }
 
+    public StatusData CurrentState
+    {
+        set { curStat = value; }
+        get { return curStat; }
+    }
 
     string name;
     int level;
     StatusData state;
+    StatusData curStat;
     string imageFile;
 
 }
