@@ -60,7 +60,7 @@ public class BattleUIController : MonoBehaviour
     };
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         battleManager = GetComponent<BattleManager>();
         partyPanel = battleUI.transform.Find("CharacterPanel").gameObject;
@@ -277,6 +277,7 @@ public class BattleUIController : MonoBehaviour
 
        if(index < 5)
         {
+            Debug.Log(index);
             partyMenber[index].SetActive(true);
             partyMenber[index].transform.Find("charSprite").GetComponent<Image>().sprite = Resources.Load<Sprite>(fileName);
         }

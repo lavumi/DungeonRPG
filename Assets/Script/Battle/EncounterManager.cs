@@ -26,7 +26,7 @@ public class EncounterManager : MonoBehaviour
 
     public void Encounter()
     {
-        battleManager.EnterBattle(CharacterDataManager.GetInstance().GetMonsterGroup());
+        battleManager.EnterBattle(DataManager.GetInstance().GetMonsterGroup());
     }
 
 

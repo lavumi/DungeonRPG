@@ -1,4 +1,4 @@
-imgFile,CharName,str,def,HP,speed
+imgFile,charName,str,def,HP,speed
 Image/testChar00,BlackCow,2,2,5,4
 Image/testChar01,RainbowPewk,3,3,6,2
 Image/testChar02,Gotit,4,4,7,9

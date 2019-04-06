@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        CharacterDataManager.GetInstance();
+        DataManager.GetInstance();
     }
 
     // Start is called before the first frame update

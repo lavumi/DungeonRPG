@@ -4,10 +4,10 @@ using UnityEngine;
 
 
 //캐릭터 데이터를 읽고 제공해 주는 클래스
-public class CharacterDataManager : MonoBehaviour
+public class DataManager : MonoBehaviour
 {
 
-    private static CharacterDataManager instance = null;        
+    private static DataManager instance = null;        
     void Awake()
     {
         if (instance == null)
@@ -16,10 +16,13 @@ public class CharacterDataManager : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject);
 
+
+
         DontDestroyOnLoad(gameObject);
+        InitData();
     }
 
-    public static CharacterDataManager GetInstance()
+    public static DataManager GetInstance()
     {
         return instance;
     }
@@ -28,19 +31,18 @@ public class CharacterDataManager : MonoBehaviour
     CharacterBase[] enemyData;
     CharacterBase[] playerData;
     
-    string baseResourcePath = "CharacterData/";
+    string baseResourcePath = "GameData/";
 
-
-    // Start is called before the first frame update
-    void Start()
+    void InitData()
     {
-        LoadEnemyData();
         LoadPlayerData();
+        LoadEnemyData();
     }
 
     void LoadEnemyData()
     {
         List<Dictionary<string, object>> data = csvReader.Read(baseResourcePath + "DRPG_DATA_SHEET - Enemy");
+
         enemyData = new CharacterBase[data.Count];
 
         for (var i = 0; i < data.Count; i++)
@@ -53,16 +55,15 @@ public class CharacterDataManager : MonoBehaviour
                 (int)data[i][StatusData.memberList[3]]
                 );
 
-            enemyData[i] = new CharacterBase((string)data[i]["imgFile"], (string)data[i]["CharName"], 1, stat);
+            enemyData[i] = new CharacterBase((string)data[i]["imgFile"], (string)data[i]["charName"], stat);
         }
     }
-
 
     void LoadPlayerData()
     {
         List<Dictionary<string, object>> data = csvReader.Read(baseResourcePath + "DRPG_DATA_SHEET - Chara");
         playerData = new CharacterBase[data.Count];
-
+        Debug.Log("LoadPlayerData" + data.Count);
         for (var i = 0; i < data.Count; i++)
         {
             StatusData stat = new StatusData();
@@ -73,33 +74,31 @@ public class CharacterDataManager : MonoBehaviour
                 (int)data[i][StatusData.memberList[3]]
                 );
 
-            playerData[i] = new CharacterBase((string)data[i]["imgFile"], (string)data[i]["CharName"], 1, stat);
+            playerData[i] = new CharacterBase((string)data[i]["imgFile"], (string)data[i]["charName"], stat);
         }
     }
 
-
-
-    public CharacterBase[] GetMonsterGroup()
+    public GameCharacter[] GetMonsterGroup()
     {
         int monsterCount = Random.Range(1, 6);
-        CharacterBase[] enemyGroupData = new CharacterBase[monsterCount];
+        GameCharacter[] enemyGroupData = new GameCharacter[monsterCount];
 
         for (int i = 0; i < monsterCount; i++)
         {
             int rndMon = Random.Range(0, enemyData.Length);
-            enemyGroupData[i] = new CharacterBase(enemyData[rndMon].imgFile, enemyData[rndMon].Name, enemyData[rndMon].Level, enemyData[rndMon].State);
+            enemyGroupData[i] = new GameCharacter(enemyData[rndMon], 1, 0 );
             ;
         }
         return enemyGroupData;
     }
 
-    public CharacterBase[] GetTestPlayerParty()
+    public GameCharacter[] GetTestPlayerParty()
     {
-        CharacterBase[] party = new CharacterBase[5];
+        GameCharacter[] party = new GameCharacter[5];
 
         for (int i = 0; i < 5; i++)
         {
-            party[i] = new CharacterBase(playerData[i].imgFile, playerData[i].Name, playerData[i].Level, playerData[i].State);
+            party[i] = new GameCharacter(playerData[i], 1, 0);
         }
         return party;
     }

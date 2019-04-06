@@ -20,8 +20,8 @@ public class BattleManager : MonoBehaviour
 
     FadeManager fadeManager;
 
-    CharacterBase[] userPartyData;
-    CharacterBase[] enemyPartyData;
+    GameCharacter[] userPartyData;
+    GameCharacter[] enemyPartyData;
 
 
 
@@ -43,22 +43,22 @@ public class BattleManager : MonoBehaviour
 
     //*************************BattleAction INFO*************************************//
 
-    private delegate void BattleAction(CharacterBase[] from, int[] fromIndex, CharacterBase[] to, int[] toIndex);
+    private delegate void BattleAction(GameCharacter[] from, int[] fromIndex, GameCharacter[] to, int[] toIndex);
 
     struct BattleActionData
     {
         BattleAction action;
-        CharacterBase[] from;
-        CharacterBase[] to;
+        GameCharacter[] from;
+        GameCharacter[] to;
         int[] fromIndex;
         int[] toIndex;
         public int actionDelay;
         public int priority;
 
 
-        public BattleActionData( BattleAction action, 
-                CharacterBase[] from, int[] fromIndex,
-                CharacterBase[] to, int[] toIndex,
+        public BattleActionData( BattleAction action,
+                GameCharacter[] from, int[] fromIndex,
+                GameCharacter[] to, int[] toIndex,
                 int actionDelay, 
                 int priority)
         {
@@ -77,7 +77,7 @@ public class BattleManager : MonoBehaviour
         {
             foreach (var item in from)
             {
-                if (item.CurrentState.HP < 1)
+                if (item.CurrentStat.HP < 1)
                 {
                     return false;
                 }
@@ -87,7 +87,7 @@ public class BattleManager : MonoBehaviour
             bool targetAllDead = true;
             foreach (var item in to)
             {
-                targetAllDead = targetAllDead & (item.CurrentState.HP < 1);
+                targetAllDead = targetAllDead & (item.CurrentStat.HP < 1);
             }
             if(targetAllDead == true && to.Length != 0)
             {
@@ -112,7 +112,7 @@ public class BattleManager : MonoBehaviour
         uiController = GetComponent<BattleUIController>();
 
         characterBattleData = new BattleActionData[5];
-        userPartyData = new CharacterBase[5];
+        userPartyData = new GameCharacter[5];
         enemyPartyData = null;
         
         fadeManager = gameController.GetComponent<FadeManager>();
@@ -171,18 +171,18 @@ public class BattleManager : MonoBehaviour
 
 
 
-    void setEnemyData(int index, CharacterBase data)
+    void setEnemyData(int index, GameCharacter data)
     {
-        uiController.SetSprite(index, data.imgFile);
+        uiController.SetSprite(index, data.baseInfo.imgFile);
     }
 
     void InitPartyData()
     {
-        userPartyData = CharacterDataManager.GetInstance().GetTestPlayerParty();
+        userPartyData = DataManager.GetInstance().GetTestPlayerParty();
 
         for (int i = 0; i < userPartyData.Length; i++)
         {
-            uiController.SetSprite( i, userPartyData[i].imgFile );
+            uiController.SetSprite( i, userPartyData[i].baseInfo.imgFile);
         }
         refreshPartyData();
     }
@@ -215,8 +215,8 @@ public class BattleManager : MonoBehaviour
     {
         for (int i = 0; i < userPartyData.Length; i++)
         {
-            int currentHP = userPartyData[i].CurrentState.HP;
-            int totalHP = userPartyData[i].State.HP;
+            int currentHP = userPartyData[i].CurrentStat.HP;
+            int totalHP = userPartyData[i].baseInfo.Stat.HP;
             uiController.setHPGuage(i, currentHP, totalHP);
             
 
@@ -271,7 +271,7 @@ public class BattleManager : MonoBehaviour
 
     BattleActionData makeBattleActionData(int[] fromIndex, int[] toIndex)
     {
-        CharacterBase[] from = new CharacterBase[fromIndex.Length];
+        GameCharacter[] from = new GameCharacter[fromIndex.Length];
         int priorityCount = 0;
         for (int i = 0; i < fromIndex.Length; i++)
         {
@@ -284,11 +284,11 @@ public class BattleManager : MonoBehaviour
                 int targetIndex = fromIndex[i] - 5;
                 from[i] = enemyPartyData[targetIndex];
             }
-            priorityCount += from[i].CurrentState.speed;
+            priorityCount += from[i].CurrentStat.speed;
         }
         priorityCount /= fromIndex.Length;
 
-        CharacterBase[] to = new CharacterBase[toIndex.Length];
+        GameCharacter[] to = new GameCharacter[toIndex.Length];
         for (int i = 0; i < toIndex.Length; i++)
         {
             if (toIndex[i] < 5)
@@ -370,20 +370,20 @@ public class BattleManager : MonoBehaviour
         yield return null;
     }
     
-    void AttackAction(CharacterBase[] from, int[] fromIndex, CharacterBase[] to, int[] toIndex)
+    void AttackAction(GameCharacter[] from, int[] fromIndex, GameCharacter[] to, int[] toIndex)
     {
         StartCoroutine(attackRoutine( from, fromIndex, to, toIndex));
     }
 
-    IEnumerator attackRoutine(CharacterBase[] from, int[] fromIndex, CharacterBase[] to, int[] toIndex)
+    IEnumerator attackRoutine(GameCharacter[] from, int[] fromIndex, GameCharacter[] to, int[] toIndex)
     {
         foreach (var fromItem in from)
         {
             foreach (var toItem in to)
             {
-                StatusData data = toItem.CurrentState;
-                data.HP -= fromItem.CurrentState.str;
-                toItem.CurrentState = data;
+                StatusData data = toItem.CurrentStat;
+                data.HP -= fromItem.CurrentStat.str;
+                toItem.CurrentStat = data;
             }
         }
 
@@ -411,12 +411,12 @@ public class BattleManager : MonoBehaviour
         yield return null;
     }
 
-    void SkillAction(CharacterBase[] from, int[] fromIndex, CharacterBase[] to, int[] toIndex)
+    void SkillAction(GameCharacter[] from, int[] fromIndex, GameCharacter[] to, int[] toIndex)
     {
         StartCoroutine(skillRoutine(from, fromIndex, to, toIndex));
     }
 
-    IEnumerator skillRoutine(CharacterBase[] from, int[] fromIndex, CharacterBase[] to, int[] toIndex)
+    IEnumerator skillRoutine(GameCharacter[] from, int[] fromIndex, GameCharacter[] to, int[] toIndex)
     {
         foreach (var item in fromIndex)
         {
@@ -442,12 +442,12 @@ public class BattleManager : MonoBehaviour
         yield return null;
     }
 
-    void ItemAction(CharacterBase[] from, int[] fromIndex, CharacterBase[] to, int[] toIndex)
+    void ItemAction(GameCharacter[] from, int[] fromIndex, GameCharacter[] to, int[] toIndex)
     {
         StartCoroutine(itemRoutine(from, fromIndex, to, toIndex));
     }
 
-    IEnumerator itemRoutine(CharacterBase[] from, int[] fromIndex, CharacterBase[] to, int[] toIndex)
+    IEnumerator itemRoutine(GameCharacter[] from, int[] fromIndex, GameCharacter[] to, int[] toIndex)
     {
 
         foreach (var item in fromIndex)
@@ -474,7 +474,7 @@ public class BattleManager : MonoBehaviour
         yield return null;
     }
 
-    void RunAction(CharacterBase[] from, int[] fromIndex, CharacterBase[] to, int[] toIndex)
+    void RunAction(GameCharacter[] from, int[] fromIndex, GameCharacter[] to, int[] toIndex)
     {
         StopAllCoroutines();
         ExitBattle();
@@ -527,10 +527,7 @@ public class BattleManager : MonoBehaviour
             to = new int[0];
         }
 
-
-        Debug.Log(to.Length);
         BattleActionData data = makeBattleActionData(from, to);
-
 
         setCharacterAction(currentPlayerIndex, data);
 
@@ -582,7 +579,7 @@ public class BattleManager : MonoBehaviour
         bool eleminated = true;
         foreach (var item in userPartyData)
         {
-            eleminated = eleminated & (item.CurrentState.HP < 1);
+            eleminated = eleminated & (item.CurrentStat.HP < 1);
         }
         if (eleminated == true)
         {
@@ -592,7 +589,7 @@ public class BattleManager : MonoBehaviour
         bool allEnemyDead = true;
         foreach (var item in enemyPartyData)
         {
-            allEnemyDead = allEnemyDead & (item.CurrentState.HP < 1);
+            allEnemyDead = allEnemyDead & (item.CurrentStat.HP < 1);
         }
         if (allEnemyDead == true)
         {
@@ -601,7 +598,7 @@ public class BattleManager : MonoBehaviour
     }
 
 
-    public void EnterBattle(CharacterBase[] enemyGroupData)
+    public void EnterBattle(GameCharacter[] enemyGroupData)
     {
         enemyPartyData = null;
         enemyPartyData = enemyGroupData;
@@ -668,12 +665,12 @@ public class BattleManager : MonoBehaviour
         if(index < 5)
         {
             
-            return userPartyData[index].CurrentState.HP < 1;
+            return userPartyData[index].CurrentStat.HP < 1;
         }
         else
         {
             int targetIndex = index - 5;
-            return enemyPartyData[targetIndex].CurrentState.HP < 1;
+            return enemyPartyData[targetIndex].CurrentStat.HP < 1;
         }
     } 
 }
