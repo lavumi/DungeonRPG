@@ -1,4 +1,4 @@
-imgFile,charName,str,def,HP,speed
-Image/enemyChar00,Baby D.va,1,1,10,2
-Image/enemyChar01,PioraSense,2,1,5,4
-Image/enemyChar02,MDuin,2,5,5,10
+imgFile,charName,STR,INT,PIE,AGI,VIT,LUC,skillData
+Image/enemyChar00,Baby D.va,2,2,5,1,7,1,1
+Image/enemyChar01,PioraSense,3,3,6,2,6,2,2
+Image/enemyChar02,MDuin,4,4,7,3,9,1,3

@@ -30,18 +30,22 @@ public class DataManager : MonoBehaviour
 
     CharacterBase[] enemyData;
     CharacterBase[] playerData;
+    SkillBase[] skillData;
     
-    string baseResourcePath = "GameData/";
+    string baseResourcePath = "GameData/DRPG_DATA_SHEET - ";
 
     void InitData()
     {
+        LoadSkillData();
+
         LoadPlayerData();
         LoadEnemyData();
+
     }
 
     void LoadEnemyData()
     {
-        List<Dictionary<string, object>> data = csvReader.Read(baseResourcePath + "DRPG_DATA_SHEET - Enemy");
+        List<Dictionary<string, object>> data = csvReader.Read(baseResourcePath + "Enemy");
 
         enemyData = new CharacterBase[data.Count];
 
@@ -52,18 +56,19 @@ public class DataManager : MonoBehaviour
                 (int)data[i][StatusData.memberList[0]],
                 (int)data[i][StatusData.memberList[1]],
                 (int)data[i][StatusData.memberList[2]],
-                (int)data[i][StatusData.memberList[3]]
+                (int)data[i][StatusData.memberList[3]],
+                (int)data[i][StatusData.memberList[4]],
+                (int)data[i][StatusData.memberList[5]]
                 );
 
-            enemyData[i] = new CharacterBase((string)data[i]["imgFile"], (string)data[i]["charName"], stat);
+            enemyData[i] = new CharacterBase((string)data[i]["imgFile"], (string)data[i]["charName"], stat, (int)data[i]["skillData"]);
         }
     }
 
     void LoadPlayerData()
     {
-        List<Dictionary<string, object>> data = csvReader.Read(baseResourcePath + "DRPG_DATA_SHEET - Chara");
+        List<Dictionary<string, object>> data = csvReader.Read(baseResourcePath + "Chara");
         playerData = new CharacterBase[data.Count];
-        Debug.Log("LoadPlayerData" + data.Count);
         for (var i = 0; i < data.Count; i++)
         {
             StatusData stat = new StatusData();
@@ -71,12 +76,34 @@ public class DataManager : MonoBehaviour
                 (int)data[i][StatusData.memberList[0]],
                 (int)data[i][StatusData.memberList[1]],
                 (int)data[i][StatusData.memberList[2]],
-                (int)data[i][StatusData.memberList[3]]
+                (int)data[i][StatusData.memberList[3]],
+                (int)data[i][StatusData.memberList[4]],
+                (int)data[i][StatusData.memberList[5]]
                 );
 
-            playerData[i] = new CharacterBase((string)data[i]["imgFile"], (string)data[i]["charName"], stat);
+            playerData[i] = new CharacterBase((string)data[i]["imgFile"], (string)data[i]["charName"], stat,(int)data[i]["skillData"]);
         }
     }
+
+    void LoadSkillData()
+    {
+        List<Dictionary<string, object>> data = csvReader.Read(baseResourcePath + "Skill");
+        skillData = new SkillBase[data.Count];
+        for (var i = 0; i < data.Count; i++)
+        {
+            Debug.Log((string)data[i]["effectFile"] + "//" + Resources.Load<Sprite>((string)data[i]["effectFile"]));
+            skillData[i] = new SkillBase(
+                (int)data[i]["index"],
+                Resources.Load<Sprite>((string)data[i]["effectFile"]),
+                (string)data[i]["name"],
+                (TargetType)data[i]["targetType"],
+                (ElementType)data[i]["elementType"],
+                (int)data[i]["power"],
+                (int)data[i]["priority"]
+                );
+        }
+    }
+        
 
     public GameCharacter[] GetMonsterGroup()
     {
@@ -101,5 +128,10 @@ public class DataManager : MonoBehaviour
             party[i] = new GameCharacter(playerData[i], 1, 0);
         }
         return party;
+    }
+
+    public SkillBase GetSkillData(int index)
+    {
+        return skillData[index];
     }
 }

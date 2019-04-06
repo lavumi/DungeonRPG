@@ -1,6 +1,6 @@
-imgFile,charName,str,def,HP,speed
-Image/testChar00,BlackCow,2,2,5,4
-Image/testChar01,RainbowPewk,3,3,6,2
-Image/testChar02,Gotit,4,4,7,9
-Image/testChar03,EUUU,2,4,8,3
-Image/testChar04,Ari,2,2,9,1
+imgFile,charName,STR,INT,PIE,AGI,VIT,LUC,skillData
+Image/testChar00,BlackCow,2,2,5,1,11,1,1
+Image/testChar01,RainbowPewk,3,3,6,2,12,2,2
+Image/testChar02,Gotit,4,4,7,3,9,1,3
+Image/testChar03,EUUU,2,4,8,4,10,2,1
+Image/testChar04,Ari,4,2,9,5,6,2,2

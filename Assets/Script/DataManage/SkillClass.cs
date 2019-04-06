@@ -24,18 +24,18 @@ public enum ElementType
 
 public class SkillBase
 {
-    readonly int index;
-    readonly string effectFile;
-    readonly string name;
-    readonly TargetType targetType;
-    readonly ElementType elementType;
-    readonly int power;
-    readonly int priority;
+    public readonly int index;
+    public readonly Sprite effectFile;
+    public readonly string name;
+    public readonly TargetType targetType;
+    public readonly ElementType elementType;
+    public readonly int power;
+    public readonly int priority;
 
-    public SkillBase(int index, string effectFile, string name, TargetType targetType, ElementType elementType, int power, int priority)
+    public SkillBase(int index, Sprite effectFile, string name, TargetType targetType, ElementType elementType, int power, int priority)
     {
         this.index = index;
-        this.effectFile = effectFile ?? throw new ArgumentNullException(nameof(effectFile));
+        this.effectFile = effectFile;
         this.name = name ?? throw new ArgumentNullException(nameof(name));
         this.targetType = targetType;
         this.elementType = elementType;

@@ -131,10 +131,10 @@ public class BattleUIController : MonoBehaviour
                 switch (i)
                 {
                     case 0:
-                        targetTransform.GetComponent<Button>().onClick.AddListener(battleManager.AttackCommand);
+                        targetTransform.GetComponent<Button>().onClick.AddListener(() => { battleManager.AttackCommand(); });
                         break;
                     case 1:
-                        targetTransform.GetComponent<Button>().onClick.AddListener(battleManager.SkillCommand);
+                        targetTransform.GetComponent<Button>().onClick.AddListener(()=> { battleManager.SkillCommand(0); });
                         break;
                     case 2:
                         targetTransform.GetComponent<Button>().onClick.AddListener(battleManager.ItemCommand);
@@ -263,6 +263,7 @@ public class BattleUIController : MonoBehaviour
 
     public void SetActionText(int index, string text)
     {
+        Debug.Log("SetActionText" + index);
         partyActionText[index].text = text;
     }
 
@@ -277,7 +278,6 @@ public class BattleUIController : MonoBehaviour
 
        if(index < 5)
         {
-            Debug.Log(index);
             partyMenber[index].SetActive(true);
             partyMenber[index].transform.Find("charSprite").GetComponent<Image>().sprite = Resources.Load<Sprite>(fileName);
         }
@@ -287,11 +287,9 @@ public class BattleUIController : MonoBehaviour
             enemies[targetIndex].SetActive(true);
             enemies[targetIndex].transform.Find("charSprite").GetComponent<Image>().sprite = Resources.Load<Sprite>(fileName);
         }
-
-
     }
 
-    public void showIndicator(int index, bool isShow)
+    public void showIndicator( bool isShow, int index = 999)
     {
         if( index < 5 )
             partyIndicator[index].SetActive(isShow);
@@ -300,17 +298,41 @@ public class BattleUIController : MonoBehaviour
             int targetIndex = index - 5;
             enemyIndicator[targetIndex].SetActive(isShow);
         }
+    }
+
+    public void showIndicator(bool isShow, int[] index)
+    {
+        foreach (int item in index)
+        {
+            if (item < 5)
+                partyIndicator[item].SetActive(isShow);
+            else
+            {
+                int targetIndex = item - 5;
+                enemyIndicator[targetIndex].SetActive(isShow);
+            }
+        }
 
     }
 
-    public void showEffect(int index, bool isShow)
+    public void showEffect(int index, bool isShow, Sprite effectFile = null )
     {
-        if( index < 5 )
+        Sprite effect;
+        if (effectFile == null)
+            effect = DataManager.GetInstance().GetSkillData(0).effectFile;
+        else
+            effect = effectFile;
+
+        if ( index < 5)
+        {
             partyEffect[index].gameObject.SetActive(isShow);
+            partyEffect[index].sprite = effect;
+        }
         else
         {
             int targetIndex = index - 5;
             enemyEffect[targetIndex].gameObject.SetActive(isShow);
+            enemyEffect[targetIndex].sprite = effect;
         }
     }
 
