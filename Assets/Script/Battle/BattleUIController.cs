@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +6,6 @@ public class BattleUIController : MonoBehaviour
 {
     //**********************UI Position Data************************************//
     float _uiOffset = 0.02f;
-    float _commandBtnHeight = 0.15f;
-    float _commandBtnWidth = 0.2f;
     float _uiInterOffset = 0.015f;
 
     float _characterImgRatio = 0.3f;
@@ -35,8 +32,20 @@ public class BattleUIController : MonoBehaviour
     GameObject[] enemyIndicator;
     Image[] enemyEffect;
 
+
+
+    LineRenderer lineRenderer;
+
+
+    //********************CommandPanel*****************************//
     GameObject commandPanel;
-    Button[] commands;
+    GameObject AttackPanel;
+    GameObject SkillPanel;
+    GameObject ItemPanel;
+
+    ActionIconControl[] attackBtns;
+    ActionIconControl[] skillBtns;
+    ActionIconControl[] itemBtns;
 
     BattleManager battleManager;
 
@@ -48,16 +57,14 @@ public class BattleUIController : MonoBehaviour
     int[] monsterPortraitOrder = { 4, 2, 0, 1, 3 };
 
 
-    int prevIndicator = -1;
-
-    string[] commandScript =
-{
-        "Attack",
-        "Skill",
-        "Item",
-        "Formation",
-        "Run"
-    };
+    //string[] commandScript =
+    //{
+    //    "Attack",
+    //    "Skill",
+    //    "Item",
+    //    "Formation",
+    //    "Run"
+    //};
 
     // Start is called before the first frame update
     void Awake()
@@ -65,7 +72,7 @@ public class BattleUIController : MonoBehaviour
         battleManager = GetComponent<BattleManager>();
         partyPanel = battleUI.transform.Find("CharacterPanel").gameObject;
         enemyPanel = battleUI.transform.Find("EnemyPanel").gameObject;
-        commandPanel = battleUI.transform.Find("CommandPanel").gameObject;
+        commandPanel = battleUI.transform.Find("newCommandPanel").gameObject;
 
         gameOver = battleUI.transform.parent.Find("GameOver").gameObject;
         startActionQueue = battleUI.transform.Find("OKButton").GetComponent<Button>();
@@ -87,6 +94,9 @@ public class BattleUIController : MonoBehaviour
         enemyIndicator = new GameObject[5];
         enemyEffect = new Image[5];
 
+        lineRenderer = GetComponent<LineRenderer>();
+
+
         InitUI();
     }
 
@@ -98,73 +108,142 @@ public class BattleUIController : MonoBehaviour
 
     void InitUI()
     {
-        initCommandUI();
+        // initCommandUI();
+        initNewCommandUI();
+
+
         initCharacterUI();
         initEnemyUI();
 
         battleUI.SetActive(false);
     }
 
-    void initCommandUI()
+    //void initCommandUI()
+    //{
+    //    RectTransform targetTransform;
+
+    //    float anchorPosition = 1;
+    //    //Command Panel
+    //    if (commandPanel != null)
+    //    {
+    //        //((RectTransform)commandPanel.transform).anchorMin = new Vector2(_uiOffset, _characterImgRatio + _uiOffset);
+    //        //((RectTransform)commandPanel.transform).anchorMax = new Vector2(_uiOffset + _commandBtnWidth, 1 - _uiOffset);
+
+    //       // anchorPosition -= _uiOffset;
+    //        for (int i = 0; i < 5; i++)
+    //        {
+    //            targetTransform = (RectTransform)commandPanel.transform.GetChild(i).transform;
+    //            //targetTransform.anchorMax = new Vector2(0.98f, anchorPosition);
+    //            //anchorPosition -= _commandBtnHeight;
+    //            //targetTransform.anchorMin = new Vector2(0.02f, anchorPosition);
+    //            //anchorPosition -= _uiInterOffset;
+
+    //            //targetTransform.GetChild(0).GetComponent<Text>().text = commandScript[i];
+
+
+    //            switch (i)
+    //            {
+    //                case 0:
+    //                    targetTransform.GetComponent<Button>().onClick.AddListener(() => { battleManager.AttackCommand(); });
+    //                    break;
+    //                case 1:
+    //                    targetTransform.GetComponent<Button>().onClick.AddListener(()=> { battleManager.SkillCommand(0); });
+    //                    break;
+    //                case 2:
+    //                    targetTransform.GetComponent<Button>().onClick.AddListener(battleManager.ItemCommand);
+    //                    break;
+    //                case 3:
+    //                    targetTransform.GetComponent<Button>().onClick.AddListener(battleManager.FormationCommand);
+    //                    break;
+    //                case 4:
+    //                    targetTransform.GetComponent<Button>().onClick.AddListener(battleManager.RunCommand);
+    //                    break;
+    //            }
+
+    //        }
+
+    //        CommandPanelActive(false);
+    //    }
+    //}
+
+    void initNewCommandUI()
     {
-        RectTransform targetTransform;
+        AttackPanel = commandPanel.transform.Find("AttackContainer").gameObject;
+        SkillPanel = commandPanel.transform.Find("SkillContainer").gameObject;
+        ItemPanel = commandPanel.transform.Find("ItemContainer").gameObject;
 
-        float anchorPosition = 1;
-        //Command Panel
-        if (commandPanel != null)
+        GameObject iconPrefeb = Resources.Load("Prefebs/SkillIconBase") as GameObject;
+
+        float iconSize = 90.0f;
+
+
+        attackBtns = new ActionIconControl[2];
+
+        for (int i = 0; i < 2; i++)
         {
-            ((RectTransform)commandPanel.transform).anchorMin = new Vector2(_uiOffset, _characterImgRatio + _uiOffset);
-            ((RectTransform)commandPanel.transform).anchorMax = new Vector2(_uiOffset + _commandBtnWidth, 1 - _uiOffset);
-
-            anchorPosition -= _uiOffset;
-            for (int i = 0; i < 5; i++)
+            for (int j = 0; j < 1; j++)
             {
-                targetTransform = (RectTransform)commandPanel.transform.GetChild(i).transform;
-                targetTransform.anchorMax = new Vector2(0.98f, anchorPosition);
-                anchorPosition -= _commandBtnHeight;
-                targetTransform.anchorMin = new Vector2(0.02f, anchorPosition);
-                anchorPosition -= _uiInterOffset;
+                GameObject icon = Instantiate(iconPrefeb);
+                icon.transform.SetParent(AttackPanel.transform);
+                RectTransform targetTransform = icon.transform.GetComponent<RectTransform>();
 
-                targetTransform.GetChild(0).GetComponent<Text>().text = commandScript[i];
-
-
-                switch (i)
-                {
-                    case 0:
-                        targetTransform.GetComponent<Button>().onClick.AddListener(() => { battleManager.AttackCommand(); });
-                        break;
-                    case 1:
-                        targetTransform.GetComponent<Button>().onClick.AddListener(()=> { battleManager.SkillCommand(0); });
-                        break;
-                    case 2:
-                        targetTransform.GetComponent<Button>().onClick.AddListener(battleManager.ItemCommand);
-                        break;
-                    case 3:
-                        targetTransform.GetComponent<Button>().onClick.AddListener(battleManager.FormationCommand);
-                        break;
-                    case 4:
-                        targetTransform.GetComponent<Button>().onClick.AddListener(battleManager.RunCommand);
-                        break;
-                }
-
+                targetTransform.anchoredPosition = new Vector2(
+                    10 + (iconSize + 10) * j,
+                    10 + (iconSize + 10) * i);
+                attackBtns[i + j * 2] = icon.GetComponent<ActionIconControl>();
+                attackBtns[i + j * 2].RegisterAction(battleManager.AttackCommand);
             }
 
-            CommandPanelActive(false);
+        }
+
+        skillBtns = new ActionIconControl[8];
+
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                GameObject icon = Instantiate(iconPrefeb);
+                icon.transform.SetParent(SkillPanel.transform);
+                RectTransform targetTransform = icon.transform.GetComponent<RectTransform>();
+
+                targetTransform.anchoredPosition = new Vector2(
+                    10 + (iconSize + 10) * j,
+                    10 + (iconSize + 10) * i);
+                skillBtns[i + j * 2] = icon.GetComponent<ActionIconControl>();
+                skillBtns[i + j * 2].RegisterAction((int a) => { battleManager.SkillCommand(a); });
+            }
+
+        }
+
+
+        itemBtns = new ActionIconControl[8];
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                GameObject icon = Instantiate(iconPrefeb);
+                icon.transform.SetParent(ItemPanel.transform);
+                RectTransform targetTransform = icon.transform.GetComponent<RectTransform>();
+
+                targetTransform.anchoredPosition = new Vector2(
+                    10 + (iconSize + 10) * j,
+                    10 + (iconSize + 10) * i);
+                itemBtns[i + j * 2] = icon.GetComponent<ActionIconControl>();
+            }
+
         }
     }
 
+
     void initCharacterUI()
     {
-
-        RectTransform targetTransform;
-
-        float anchorPosition = 0;
 
         //UserCharacterPanel
         var characterImageSize = Screen.height * _characterImgRatio * 0.9f;
         var characterInterval = Screen.height * _uiInterOffset;
 
-        GameObject UIPrefab = Resources.Load("Prefebs/IconBase") as GameObject;
+        GameObject UIPrefab = Resources.Load("Prefebs/CharacterIconBase") as GameObject;
+        Sprite baseImage = Resources.Load("Prefebs/Icon/S_X_chop") as Sprite;
 
         if (partyPanel != null)
         {
@@ -173,14 +252,18 @@ public class BattleUIController : MonoBehaviour
 
             for (int i = 0; i < 5; i++)
             {
+                RectTransform targetTransform;
                 GameObject target = Instantiate(UIPrefab);
-                target.transform.parent = partyPanel.transform;
+                target.transform.SetParent( partyPanel.transform);
                 targetTransform = target.transform.GetComponent<RectTransform>();
+
+               // GameObject target = partyPanel.transform.GetChild(i).gameObject;
                 targetTransform.sizeDelta = new Vector2(characterImageSize, characterImageSize);
 
                 targetTransform.anchoredPosition = new Vector2(
-                    (characterImageSize + characterInterval) * target.transform.localScale.x * (2 - i),
-                    0);
+                (characterImageSize + characterInterval) * target.transform.localScale.x * (2 - i),
+                0);
+
 
                 partyMenber[i] = target;
                 partyHP[i]          = target.transform.Find("HPSlider").GetComponent<Slider>();
@@ -203,11 +286,11 @@ public class BattleUIController : MonoBehaviour
     {
 
         RectTransform targetTransform;
-        GameObject UIPrefab = Resources.Load("Prefebs/IconBase") as GameObject;
+        GameObject UIPrefab = Resources.Load("Prefebs/CharacterIconBase") as GameObject;
         UIPrefab.transform.Find("HPSlider").gameObject.SetActive(false);
         UIPrefab.transform.Find("ActionInfoText").gameObject.SetActive(false);
 
-        float anchorPosition = 0;
+
         var characterImageSize = Screen.height * _characterImgRatio * 0.8f;
         var characterInterval = Screen.height * _uiInterOffset;
 
@@ -221,7 +304,7 @@ public class BattleUIController : MonoBehaviour
             for (int i = 0; i < 5; i++)
             {
                 GameObject target = Instantiate(UIPrefab);
-                target.transform.parent = enemyPanel.transform;
+                target.transform.SetParent(enemyPanel.transform);
                 targetTransform = target.transform.GetComponent<RectTransform>();
 
                 targetTransform.sizeDelta = new Vector2(characterImageSize, characterImageSize);
@@ -235,10 +318,11 @@ public class BattleUIController : MonoBehaviour
                 enemyEffect[monsterPortraitOrder[i]] =  target.transform.Find("EffectSprite").GetComponent<Image>();
 
                 var targetIndex = monsterPortraitOrder[i] + 5; // playerParty 다음부터 카운트되기에 5번부터 인덱싱
-                target.GetComponent<Button>().onClick.AddListener(() => {
-                    battleManager.EnemyPortAction(targetIndex);
+                target.GetComponent<CharIconControl>().SetPartyIndex( targetIndex );
+                //target.GetComponent<Button>().onClick.AddListener(() => {
+                //    battleManager.EnemyPortAction(targetIndex);
                     
-                });
+                //});
                 target.GetComponent<Button>().interactable = false;
                 target.SetActive(false);
             }
@@ -261,9 +345,10 @@ public class BattleUIController : MonoBehaviour
         commandPanel.SetActive(isActive);
     }
 
+
+
     public void SetActionText(int index, string text)
     {
-        Debug.Log("SetActionText" + index);
         partyActionText[index].text = text;
     }
 

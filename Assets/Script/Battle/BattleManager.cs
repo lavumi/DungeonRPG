@@ -130,12 +130,13 @@ public class BattleManager : MonoBehaviour
 
     #region "[UI CONTROL]"
 
-    public void AttackCommand()
+    public delegate void Command(int index);
+    public void AttackCommand(int index)
     {
         
         currentAction = BtAction.Attack;
-        uiController.showIndicator(true, targetIndices);
-        uiController.EnemyTargetActive(true);
+       // uiController.showIndicator(true, targetIndices);
+       // uiController.EnemyTargetActive(true);
         uiController.SetActionText(currentPlayerIndex, "Attack");
 
     }
@@ -177,21 +178,21 @@ public class BattleManager : MonoBehaviour
 
     }
 
-    public void ItemCommand()
+    public void ItemCommand(int index)
     {
         currentAction = BattleManager.BtAction.Item;
         uiController.EnemyTargetActive(true);
         uiController.SetActionText(currentPlayerIndex, "Item");
     }
 
-    public void FormationCommand()
+    public void FormationCommand(int index)
     {
         currentAction = BattleManager.BtAction.Formation;
         uiController.EnemyTargetActive(true);
         uiController.SetActionText(currentPlayerIndex, "Formation");
     }
 
-    public void RunCommand()
+    public void RunCommand(int index)
     {
         currentAction = BattleManager.BtAction.Run;
         uiController.SetActionText(currentPlayerIndex, "Run");
@@ -292,6 +293,7 @@ public class BattleManager : MonoBehaviour
 
     public void EnemyPortAction(int index)
     {
+
         uiController.showIndicator(false, targetIndices);
         targetIndices = null;
         targetIndices = new int[1] { index };

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f32278694e756489c8dcb7bc83078ad2, type: 3}
   m_Name: tempInfo
   m_EditorClassIdentifier: 
-  editFileName: testMap
+  editFileName: DemoDungeonB1F
   editFilePath: Ariadne/Resources/MapData/

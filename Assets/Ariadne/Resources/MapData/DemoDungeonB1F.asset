@@ -92,6 +92,22 @@ MonoBehaviour:
     mapAttr: 0
     objectFront: 0
     messengerType: 0
+  - eventId: 90003
+    mapAttr: 6
+    objectFront: 2
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 1
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
+  - eventId: 0
+    mapAttr: 0
+    objectFront: 0
+    messengerType: 0
   - eventId: 0
     mapAttr: 0
     objectFront: 0
@@ -113,23 +129,7 @@ MonoBehaviour:
     objectFront: 0
     messengerType: 0
   - eventId: 0
-    mapAttr: 8
-    objectFront: 0
-    messengerType: 0
-  - eventId: 0
-    mapAttr: 0
-    objectFront: 0
-    messengerType: 0
-  - eventId: 0
-    mapAttr: 0
-    objectFront: 0
-    messengerType: 0
-  - eventId: 0
-    mapAttr: 0
-    objectFront: 0
-    messengerType: 0
-  - eventId: 0
-    mapAttr: 8
+    mapAttr: 1
     objectFront: 0
     messengerType: 0
   - eventId: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
     objectFront: 0
     messengerType: 0
   - eventId: 0
-    mapAttr: 8
+    mapAttr: 1
     objectFront: 0
     messengerType: 0
   - eventId: 0
@@ -553,7 +553,7 @@ MonoBehaviour:
     objectFront: 0
     messengerType: 0
   - eventId: 0
-    mapAttr: 8
+    mapAttr: 1
     objectFront: 0
     messengerType: 0
   - eventId: 0
@@ -829,7 +829,7 @@ MonoBehaviour:
     objectFront: 0
     messengerType: 0
   - eventId: 0
-    mapAttr: 8
+    mapAttr: 1
     objectFront: 0
     messengerType: 0
   - eventId: 0
@@ -877,7 +877,7 @@ MonoBehaviour:
     objectFront: 0
     messengerType: 0
   - eventId: 90012
-    mapAttr: 7
+    mapAttr: 1
     objectFront: 2
     messengerType: 0
   - eventId: 0

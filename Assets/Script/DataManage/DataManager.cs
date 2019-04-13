@@ -91,7 +91,7 @@ public class DataManager : MonoBehaviour
         skillData = new SkillBase[data.Count];
         for (var i = 0; i < data.Count; i++)
         {
-            Debug.Log((string)data[i]["effectFile"] + "//" + Resources.Load<Sprite>((string)data[i]["effectFile"]));
+         //   Debug.Log((string)data[i]["effectFile"] + "//" + Resources.Load<Sprite>((string)data[i]["effectFile"]));
             skillData[i] = new SkillBase(
                 (int)data[i]["index"],
                 Resources.Load<Sprite>((string)data[i]["effectFile"]),
